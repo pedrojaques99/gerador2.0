@@ -1,0 +1,356 @@
+:root {
+    --accent-color: #bfff38;
+    --bg-color: #121212;
+    --text-color: #ffffff;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--accent-color);
+    text-align: center;
+}
+
+.main-container {
+    display: flex;
+    gap: 40px;
+    margin: 40px auto;
+    padding: 0 20px;
+    height: auto;
+    min-height: calc(100vh - 120px);
+}
+
+.left-panel {
+    flex: 0.3;
+    min-width: 400px;
+    max-width: 500px;
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    height: 100%;
+}
+
+.right-panel {
+    flex: 0.7;
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-section, .form-section, .servico-item {
+    background-color: #242424;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 40px;
+}
+
+h1, h2 {
+    margin-bottom: 25px;
+}
+
+.text-field-marker {
+    position: absolute;
+    background: rgba(191, 255, 56, 0.15);
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: move;
+    min-width: 100px;
+    min-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.text-field-marker .remove-field {
+    background: #ff3838;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(255, 56, 56, 0.2);
+}
+
+.text-field-marker .remove-field:hover {
+    background-color: #ff5252;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 56, 56, 0.3);
+}
+
+.text-style-controls, .zoom-controls, .field-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: #2d2d2d;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: 2px solid #404040;
+    border-radius: 50%;
+}
+
+input[type="color"]::-moz-color-swatch {
+    border: 2px solid #404040;
+    border-radius: 50%;
+}
+
+.color-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.color-picker-container label {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.zoom-controls input[type="range"] {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: #404040;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.zoom-controls input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.zoom-controls span {
+    min-width: 60px;
+    text-align: right;
+}
+
+.servico-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.servico-header h3 {
+    margin: 0;
+    color: var(--accent-color);
+    font-size: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.input-with-button {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 25px;
+}
+
+.input-with-button .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.add-field-btn {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-field-btn:hover {
+    background-color: #c8ff5c;
+    transform: translateY(-2px);
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+input, select, textarea {
+    background-color: #2d2d2d;
+    border: 1px solid #404040;
+    border-radius: 8px;
+    color: var(--text-color);
+    padding: 12px 15px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(191, 255, 56, 0.2);
+}
+
+.btn {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(191, 255, 56, 0.2);
+    margin: 10px 0;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(191, 255, 56, 0.3);
+    background-color: #c8ff5c;
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(191, 255, 56, 0.2);
+}
+
+.bold-toggle.active {
+    background-color: #8bbc2a;
+    color: white;
+}
+
+.remove-servico {
+    background-color: #ff3838;
+    color: white;
+    margin-top: 10px;
+}
+
+.remove-servico:hover {
+    background-color: #ff5252;
+    box-shadow: 0 4px 12px rgba(255, 56, 56, 0.3);
+}
+
+/* Container do PDF */
+.pdf-container {
+    position: relative;
+    background: #242424;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    overflow: auto;
+    height: calc(100vh - 250px);
+    display: flex;
+    justify-content: center;
+}
+
+#pdfViewer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+}
+
+.pdf-page {
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: inline-block;
+}
+
+.loading, .error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--accent-color);
+    font-size: 16px;
+    text-align: center;
+}
+
+.error {
+    color: #ff3838;
+}
+
+canvas {
+    display: block;
+}
+
+.config-section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#addServico {
+    margin: 20px 0 35px 0;
+}

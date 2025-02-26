@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Orçamento 2.0</title>
+    
+    <!-- Carregar bibliotecas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    
+    <!-- Configurar PDF.js worker -->
+    <script>
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Adicione no head, após as outras bibliotecas -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerador de Orçamento</h1>
+        
+        <div class="main-container">
+            <div class="left-panel">
+                <div class="upload-section">
+                    <h2>Upload do PDF</h2>
+                    <input type="file" accept=".pdf" id="pdfUpload">
+                    <button class="btn" id="loadPdfBtn">Carregar PDF</button>
+                </div>
+
+                <div class="form-section">
+                    <h2>Dados do Orçamento</h2>
+                    <form id="orcamentoForm">
+                        <div class="input-with-button">
+                            <div class="form-group">
+                                <label for="cliente">Nome do Cliente</label>
+                                <input type="text" id="cliente" required>
+                            </div>
+                            <button type="button" class="add-field-btn" data-field="cliente">
+                                <i>+</i>
+                            </button>
+                        </div>
+
+                        <div class="input-with-button">
+                            <div class="form-group">
+                                <label for="data">Data</label>
+                                <input type="date" id="data" required>
+                            </div>
+                            <button type="button" class="add-field-btn" data-field="data">
+                                <i>+</i>
+                            </button>
+                        </div>
+
+                        <div id="servicosContainer">
+                            <div class="servico-item">
+                                <div class="servico-header">
+                                    <h3>Serviço 1</h3>
+                                </div>
+                                <div class="input-with-button">
+                                    <div class="form-group">
+                                        <label>Nome do Serviço</label>
+                                        <input type="text" class="servico-nome" required>
+                                    </div>
+                                    <button type="button" class="add-field-btn" data-field="servico_1_nome">
+                                        <i>+</i>
+                                    </button>
+                                </div>
+                                <div class="input-with-button">
+                                    <div class="form-group">
+                                        <label>Descrição</label>
+                                        <textarea class="servico-descricao" rows="2" required></textarea>
+                                    </div>
+                                    <button type="button" class="add-field-btn" data-field="servico_1_descricao">
+                                        <i>+</i>
+                                    </button>
+                                </div>
+                                <div class="input-with-button">
+                                    <div class="form-group">
+                                        <label>Valor</label>
+                                        <input type="number" class="servico-valor" step="0.01" required>
+                                    </div>
+                                    <button type="button" class="add-field-btn" data-field="servico_1_valor">
+                                        <i>+</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn" id="addServico">+ Adicionar Serviço</button>
+
+                        <div class="input-with-button">
+                            <div class="form-group">
+                                <label for="prazo">Prazo</label>
+                                <input type="text" id="prazo" required>
+                            </div>
+                            <button type="button" class="add-field-btn" data-field="prazo">
+                                <i>+</i>
+                            </button>
+                        </div>
+
+                        <button type="submit" class="btn">Gerar Orçamento</button>
+                    </form>
+                </div>
+
+                <div class="orcamentos-section">
+                    <h2>Orçamentos Salvos</h2>
+                    <div id="listaOrcamentos"></div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="config-section">
+                    <h2>Configuração do Layout</h2>
+                    <div class="zoom-controls">
+                        <input type="range" id="zoomControl" min="50" max="200" value="100">
+                        <span id="zoomValue">100%</span>
+                    </div>
+                    <div class="text-style-controls">
+                        <select id="fontFamily">
+                            <option value="Arial">Arial</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Courier">Courier</option>
+                        </select>
+                        <input type="number" id="fontSize" value="12" min="8" max="72" step="1">
+                        <button class="btn bold-toggle" id="boldToggle">B</button>
+                        <div class="color-picker-container">
+                            <input type="color" id="textColor" value="#d1d1d1">
+                        </div>
+                    </div>
+                    <div class="pdf-container">
+                        <div id="pdfViewer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link para o JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
